@@ -1,7 +1,7 @@
 // router controller
 
 var express = require("express");
-var burger = require("../models/burger");
+var burger = require("../models/burger.js");
 
 var router = express.Router();
 
@@ -11,6 +11,7 @@ router.get("/", function(req,res){
             burgers: data
         }
         console.log(hdbrsObj);
+        res.render("index", hdbrsObj)
     });
 
     router.post("/api/burgers", function(req,res){
@@ -19,7 +20,7 @@ router.get("/", function(req,res){
             [req.body.burger_name, req.body.devoured],
             function(result) {
                 // Send back ID of new item
-                res.join({ id: result.inserId});
+                res.join({ id: result.insertId});
             }
         );
     });
